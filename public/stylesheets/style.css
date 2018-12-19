@@ -1,0 +1,208 @@
+html {
+  background: whitesmoke;
+}
+
+body {
+  background: #eeeeee;
+  padding: 0 1em;
+  margin: 0 auto;
+  max-width: 1500px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #4dc2ca;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  font-size: 1.2em;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(43, 40, 40);
+}
+
+.search_nav {
+  background: #c1e6e9;
+  padding: 0.5em;
+}
+
+.search_nav > form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  width: 50%;
+  height: 20px;
+  padding: 0.5em 0;
+  margin-top: 0.3em;
+  border: 0;
+  text-align: center;
+  border-radius: 5px;
+}
+
+select, button {
+  height: 36px;
+  width: 100%;
+  border: none;
+}
+
+button {
+  background: cadetblue;
+  border-radius: 5px;
+}
+
+img {
+  width: 100%;
+}
+
+.outer_wrapper {
+  text-align: center;
+  font-size: 1em;
+}
+
+.movie {
+  background: white;
+  margin: 0 0 1em 0;
+}
+
+.movie_info {
+  flex: 1;
+  padding: 0 1em;
+  text-align: left;
+}
+
+.form_input {
+  margin: 1em 0;
+}
+
+.movie_order_details {
+  text-align: left;
+}
+
+.form_input input, textarea {
+  width: 70%;
+  text-align: left;
+}
+
+textarea {
+  border: none;
+  border-radius: 5px;
+}
+
+.button_small {
+  width: 100px;
+  margin: 0.5em;
+}
+
+.button {
+  background: cadetblue;
+  border-radius: 5 px;
+  padding: 0.5em;
+}
+
+.movie_order_details {
+  background: #eed;
+  text-align: center;
+  padding: 1em;
+}
+
+.bookings ul {
+  margin: 2em 0;
+  background: cadetblue;
+  padding: 10px;
+}
+
+.bookings li {
+  display: block;
+  background: #eee;
+  padding: 0.5em;
+}
+
+.message {
+  margin: 10px 0;
+  padding: 0.5em;
+  border: 1px solid;
+  border-radius: 5px;
+  font-size: 1.2em;
+}
+
+.close_btn {
+  float: right;
+}
+
+.close_btn:hover {
+  cursor: pointer;
+}
+
+.message_info {
+  color: rgb(195, 197, 97);
+}
+
+.message_success {
+  color: rgb(43, 255, 0);
+}
+
+.message_error {
+  color: rgb(255, 102, 0);
+}
+
+@media (min-width: 1000px) {
+  nav {
+    flex-direction: row;
+  }
+
+  nav ul {
+    flex: 2;
+    text-align: right;
+    margin-right: 1em;
+  }
+  .search_nav form {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+
+  .input_wrapper {
+    margin: 0;
+    padding: 0.5em;
+    max-width: 170px;
+    text-align: left;
+  }
+
+  .movie {
+    display: flex;
+  }
+
+  .movie_img {
+    flex: 1;
+    margin: 1em;
+  }
+
+  .movie_info {
+    flex: 1;
+    padding: 0 1em;
+  }
+
+  .movie_order_details {
+    text-align: left;
+  }
+
+  .genre_wrapper ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+}

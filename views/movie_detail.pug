@@ -1,0 +1,13 @@
+extends layout
+include mixins/_movie
+block content
+
+    each movie in movieData
+        .movie
+            if url.startsWith('/admin')
+                a(href=`${movie._id}/update`)
+                    button(class="button_small") Update Movie
+                a(href=`${movie._id}/delete`)
+                    button(class="button_small") Delete Movie
+            +movie(movie)
+            

@@ -1,0 +1,8 @@
+extends layout
+include mixins/_movie
+
+block content
+    h2= title
+    each movie in allMovies
+        .movie_wrapper
+            +movie(movie)

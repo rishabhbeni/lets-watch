@@ -1,0 +1,10 @@
+extends layout
+include mixins/_genre_list
+block content
+    h2= title
+    .genre_wrapper
+        ul
+            each genre in allGenres
+               +genreList(genre)
+            else
+                 li There are no movies

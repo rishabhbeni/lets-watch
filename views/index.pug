@@ -1,0 +1,17 @@
+extends layout
+include mixins/_movie
+include mixins/_genre_list
+block content
+  .outer_wrapper
+    .movie_wrappper
+      h2 Movies
+        a(href="/all") (see all):
+      ul
+        each movie in filteredMovies
+          +movie(movie)
+    .genre_wrappper
+      h2 Genres
+        a(href="/all") (see all):
+      ul
+        each genre in filteredGenres
+            +genreList(genre._id)

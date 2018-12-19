@@ -1,0 +1,13 @@
+extends layout
+block content
+    h3= title
+    form(action="" method="POST")
+        .form_input
+            label(for="movie_id") Movie id:
+            input(type="text" name="movie_id" id="movie_id")
+            p or:
+        .form_input
+            label(for="movie_name") Movie name:
+            input(type="text" name="movie_name" id="movie_name")
+        .form_input
+            button(type="Submit" class="button_small") CONFIRM

@@ -1,0 +1,29 @@
+mixin movieForm(movie={})
+   
+   form(action="" method="POST" enctype="multipart/form-data")
+        .form_input
+            label(for="movie_name") Movie name:
+            input(type="text" name="movie_name" required value=movie.movie_name)
+        .form_input
+            label(for="movie_description") Movie description:
+            textarea(name="movie_description" id="movie_description" cols="30" rows="10" required)=movie.movie_description
+        .form_input
+            label(for="image") Movie image:
+            input(type="file" name="image" id="image" value=movie.image)
+        .form_input
+            label(for="star_rating") Star rating:
+            input(type="number" name="star_rating" min="1" max="5" required value=movie.star_rating)
+        .form_input
+            label(for="genre") Genre:
+            input(type="text" name="genre" id="genre" required value=movie.genre)
+        .form_input
+            label(for="cost_per_night") Cost per night:
+            input(type="number" name="cost_per_night" id="cost_per_night" required value=movie.cost_per_night)
+        .form_input
+            label(for="available") Available:
+            input(type="radio" id="available" name="available" checked value="true")
+        .form_input
+            label(for="unavailable") Unavailable:
+            input(type="radio" id="unavailable" name="unavailable" value="false")
+        .form_input
+            button(type="submit" class="button_small") Confirm

@@ -1,0 +1,38 @@
+{
+  "name": "lets-watch",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "devstart": "nodemon"
+  },
+  "dependencies": {
+    "cloudinary": "^1.11.0",
+    "compress": "^0.99.0",
+    "compression": "^1.7.3",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^2.0.3",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "dotenv": "^6.1.0",
+    "express": "~4.16.0",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.3.0",
+    "helmet": "^3.15.0",
+    "http-errors": "~1.6.2",
+    "mongoose": "^5.3.1",
+    "mongoose-bcrypt": "^1.6.0",
+    "morgan": "~1.9.0",
+    "multer": "^1.4.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1",
+    "pug": "2.0.0-beta11"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  },
+  "engines": {
+    "node": "10.11.0"
+  }
+}

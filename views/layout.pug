@@ -1,0 +1,70 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    header
+      nav
+        a(href="/")
+          img#logo(src="")
+        ul
+          if !user
+            li
+              a(href="/sign-up") Sign up
+            li
+              a(href="/login") login
+            li
+              a(href="/my-account") my booking / account
+          else
+            li
+              a(href="/logout") logout(#{user.first_name})
+
+      .search_nav
+        form(action="/results" method="POST")
+          .input_wrapper
+            label(for="genre") Genre
+            input(type="text" id="genre" name="genre")
+          .input_wrapper
+            label(for="movie_name") Movie name
+            input(type="text" id="movie_name" name="movie_name" required)
+          .input_wrapper
+            label(for="cost_per_night") Cost per night
+            input(type="cost_per_night" id="cost_per_night" name="cost_per_night")
+          //- .input_wrapper
+          //-   label(for="genre") Genre
+          //-   input(type="text" id="genre" name="genre" required)
+          //- .input_wrapper
+          //-   label(for="duration") Duration
+          //-   input(type="text" id="duration" name="destination" )
+          //- .input_wrapper
+          //-   label(for="arrival-date") Arrival Date
+          //-   input(type="date" id="arrival-date" name="dateOfArrival" )
+          //- .input_wrapper
+          //-   label(for="number-orders") Number of Orders
+          //-   input(type="number" id="number-orders" name="numberOfOrders" )
+
+          .input_wrapper
+            select(name="stars")
+              option(value="1") Min 1 star
+              option(value="2") Min 2 star
+              option(value="3") Min 3 star
+              option(value="4") Min 4 star
+              option(value="5") Min 5 star
+              
+          .input_wrapper
+            select(name="sort")
+              option(value="1") Price: Low - High
+              option(value="-1") Price: High - Low
+
+          .input_wrapper
+            button(type="submit") SEARCH!
+          
+      - const values = Object.values(flash)
+      - const keys = Object.keys(flash)
+      if keys.length > 0
+        div(class=`message message_${keys}`)
+          span= values
+          span.close_btn(onclick="this.parentNode.remove()") &times;
+          
+    block content
