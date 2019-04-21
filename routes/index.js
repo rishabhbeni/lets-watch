@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-const movieController = require ('../controllers/movieController');
-const userController = require('../controllers/userController');
+const movieController = require ('../Controllers/movieController');
+const userController = require('../Controllers/userController');
 
 /* GET home page. */
 router.get('/', movieController.homePageFilters);
@@ -20,9 +20,15 @@ router.get('/', movieController.homePageFilters);
 
 router.get('/all', movieController.listAllMovies);
 router.get('/all/:movie', movieController.movieDetail);
+router.get('/all/:movieId/update', movieController.updateMovieGet);
+router.post('/all/:movieId/update',
+movieController.upload,
+movieController.pushToCloudinary,
+movieController.updateMoviePost);
 router.get('/genres', movieController.listAllGenres);
 router.get('/genres/:genre', movieController.moviesByGenre);
-router.get('/results', movieController.searchResults);
+router.post('/results', movieController.searchResults);
+
 router.get('/admin',
 userController.isAdmin,
 movieController.adminPage);
@@ -51,7 +57,9 @@ router.get('/login', userController.loginGet);
 router.post('/login', userController.loginPost);
 router.get('/logout', userController.logout);
 router.get('/confirmation/:data', userController.bookingConfirmation);
-router.get('order-placed/:data', userController.orderPlaced);
+router.get('/order-placed/:data', userController.orderPlaced);
 router.get('/my-account', userController.myAccount);
+router.get('/contact-us', userController.contactPageGet);
+router.post('/contact-us', userController.contactPagePost);
 
 module.exports = router;

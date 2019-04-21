@@ -188,10 +188,11 @@ exports.searchResults = async(req, res, next) => {
     const parsedSort = parseInt(searchQuery.sort) || 1
 
     const searchData = await Movie.aggregate ([
-        { $match: {$text: {$search: `\"${searchQuery.genre}\"` } } },
+        { $match: { $text: {$search: `\"${searchQuery.genre}\"` } } },
         { $match: { available: true, star_rating: { $gte: parsedStars} }},
         { $sort: { cost_per_night: parsedSort } }
     ])
+    //res.json(searchData)
     res.render('search_results', {title: 'Search_results', searchQuery, searchData});
 } catch(error) {
     next(error)

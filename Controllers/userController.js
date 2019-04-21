@@ -71,12 +71,13 @@ exports.logout = (req, res) => {
     res.redirect('/');
 }
 
-exports.bookingConfirmation = async (req, res, next) => {
+exports.bookingConfirmation = async(req, res, next) => {
     try {
         const data = req.params.data;
         const searchData = querystring.parse(data);
         const movie = await Movie.find( { _id: searchData.id } );
-        res.render('confirmation', { title: 'Confirm your booking', movie, searchData });
+        //res.json(searchData);
+         res.render('confirmation', { title: 'Confirm your booking', movie, searchData });
     } catch(error) {
         next(error);
     }
@@ -87,17 +88,19 @@ exports.orderPlaced = async (req, res, next) => {
         const data = req.params.data;
         const parsedData = querystring.parse(data);
         const order = new Order({
-            user_id: req.user._id,
+            user_id: req.user.id,
             movie_id: parsedData.id,
             order_details: {
-                duration: parsedData.duration,
-                dateOfDeparture: parsedData.dateOfDeparture,
-                numberOfGuests: parsedData.numberOfGuests
+                number_of_nights: parsedData.number_of_nights,
+                night_of_rent: parsedData.night_of_rent
+                //cost_per_night: parsedData.cost_per_night
+                //numberOfGuests: parsedData.numberOfGuests
             }
         });
-        await order.save();
-        req.flash('info', 'Thank you, the order has been placed!');
-        res-redirect('/my-account');
+    await order.save();
+    req.flash('info', 'Thank you, the order has been placed!');
+    //res.redirect('/');
+    res.redirect('/my-account');
     } catch(error) {
         next(error);
     }
@@ -105,15 +108,17 @@ exports.orderPlaced = async (req, res, next) => {
 
 exports.myAccount = async (req, res, next) => {
     try {
+       // const orders = await Order.find({ user_id: req.user._id});
         const orders = await Order.aggregate([
-            { $match: { user_id: req.user._id } },
+            { $match: { user_id: req.user.id } },
             { $lookup: {
-                from: 'movie',
+                from: 'movies',
                 localField: 'movie_id',
                 foreignField: '_id',
                 as: 'movie_data'
             }}
         ])
+        //res.json(orders)
         res.render('user_account', { title: 'My Account', orders});
     } catch(error) {
         next(error);
@@ -132,6 +137,19 @@ exports.allOrders = async (req, res, next) => {
             }}
         ])
         res.render('orders', { title: 'All orders', orders});
+    } catch(error) {
+        next(error);
+    }
+}
+
+exports.contactPageGet = (req, res) => {
+    res.render('contact_form', { title: 'Contact Us'});
+}
+
+exports.contactPagePost = (req, res, next) => {
+    try{
+        const searchQuery = req.body;
+        res.render('contact-success', searchQuery);
     } catch(error) {
         next(error);
     }

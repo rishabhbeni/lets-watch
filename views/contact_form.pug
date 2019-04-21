@@ -1,0 +1,22 @@
+include layout
+block content
+
+    form(action="/contact-us" method="POST")
+        .form_input
+            label(for="first_name") First name:
+            input(type="text" name="first_name" id="first_name" required)
+
+        .form_input
+            label(for="surname") Surname:
+            input(type="text" name="surname" id="surname" required)
+
+        .form_input
+            label(for="email") Email:
+            input(type="email" name="email" id="email" required)
+
+        .form_input
+            label(for="query") Your Query: 
+            textarea(name="query" id="query" cols="30" rows="10" required)
+
+        .form_input
+            button(type="submit" class="button_small") SUBMIT

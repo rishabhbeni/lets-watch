@@ -7,30 +7,35 @@ html
     header
       nav
         a(href="/")
-          img#logo(src="")
+          img#logo(src="images/logo.png")
         ul
+          li
+            a(href="/contact-us") Contact us
           if !user
             li
               a(href="/sign-up") Sign up
             li
               a(href="/login") login
-            li
-              a(href="/my-account") my booking / account
           else
+            li
+              a(href="/my-account") Bookings
             li
               a(href="/logout") logout(#{user.first_name})
 
       .search_nav
         form(action="/results" method="POST")
           .input_wrapper
-            label(for="genre") Genre
+            label(for="genre") Movie: 
             input(type="text" id="genre" name="genre")
           .input_wrapper
-            label(for="movie_name") Movie name
-            input(type="text" id="movie_name" name="movie_name" required)
+            label(for="movie_name") Genre: 
+            input(type="text" id="movie_name" name="movie_name")
           .input_wrapper
-            label(for="cost_per_night") Cost per night
-            input(type="cost_per_night" id="cost_per_night" name="cost_per_night")
+            label(for="night_of_rent") Night: 
+            input(type="date" id="night_of_rent" name="night_of_rent")
+          .input_wrapper
+            label(for="number_of_nights") Nights: 
+            input(type="number" id="number_of_nights" name="number_of_nights")
           //- .input_wrapper
           //-   label(for="genre") Genre
           //-   input(type="text" id="genre" name="genre" required)

@@ -6,6 +6,5 @@ mixin orders(order)
             each data in order.movie_data
                 li=`Movie: ${data.movie_name}`
                 li=`Genre: ${data.genre}`
-                li=`Departure: ${data.order_details.dateOfDeparture}`
-                li=`Nights: ${data.order_details.duration}`
-                li=`Guests: ${data.order_details.numberOfGuests}`
+                li=`Starts: ${order.order_details.night_of_rent}`
+                li=`Nights: ${order.order_details.number_of_nights}`

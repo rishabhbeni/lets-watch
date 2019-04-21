@@ -6,7 +6,7 @@ mixin movieForm(movie={})
             input(type="text" name="movie_name" required value=movie.movie_name)
         .form_input
             label(for="movie_description") Movie description:
-            textarea(name="movie_description" id="movie_description" cols="30" rows="10" required)=movie.movie_description
+            textarea(name="movie_description" id="movie_description" cols="30" rows="10")=movie.movie_description
         .form_input
             label(for="image") Movie image:
             input(type="file" name="image" id="image" value=movie.image)

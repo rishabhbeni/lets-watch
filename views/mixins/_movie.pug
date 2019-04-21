@@ -14,40 +14,44 @@ mixin movie(movie, searchQuery)
             p= `Star rating: ${movie.star_rating}`
             p= `Genre: ${movie.genre}`
             p= `Cost per night: $ ${movie.cost_per_night}`
-        
-            if url.startsWith ('/all/')
+    
+            if url.startsWith (`/all/${movie._id}`)
                 hr
                 h3 Search for this movie
                 .search_nav
                     form(action="/results" method="POST")
-                    .input_wrapper
-                        label(for="genre") Genre
-                        input(type="text" id="genre" name="genre")
-                    .input_wrapper
-                        label(for="movie_name") Movie name
-                        input(type="text" id="movie_name" name="movie_name" value=movie.movie_name)
-                    .input_wrapper
-                        label(for="cost_per_night") Cost per night
-                        input(type="cost_per_night" id="cost_per_night" name="cost_per_night")
+                        .input_wrapper
+                            label(for="genre") Movie: 
+                            input(type="text" id="genre" name="genre")
+                        .input_wrapper
+                            label(for="movie_name") Genre: 
+                            input(type="text" id="movie_name" name="movie_name")
+                        .input_wrapper
+                            label(for="night_of_rent") Night: 
+                            input(type="Date" id="night_of_rent" name="night_of_rent")
+                        .input_wrapper
+                            label(for="number_of_nights") Nights: 
+                            input(type="number" id="number_of_nights" name="number_of_nights")
+                        .input_wrapper
+                            button(type="submit") SEARCH
 
-                    .input_wrapper
-                        button(type="submit") SEARCH!
-
-        if url === '/results' || url.startsWith('/confirmation/')
-            .movie_order_details
-                p= `Number of nights: ${searchQuery.duration}`
-                p= `Departure date: ${searchQuery.dateOfDeparture}`
-                - const costEach = searchQuery.duration * movie.cost_per_night
-                - const totalCost = costEach * searchQuery.numberOfGuests
-                p= `Total per person $ ${costEach}`
-                hr
-                h3= `Total cost: $ ${totalCost}`
-            
-                - const query = `id=${movie._id}$duration=${searchQuery.dateOfDeparture}&numberOfGuests=${searchQuery.numberOfGuests}`;
-                if url ===`/results`
-                    a.button(href=`/confirmation/${query}`) Continue
-                else if url.startsWith('/confirmation/')
+    if url === '/results' || url.startsWith('/confirmation')
+        .movie_order_details
+            p= `Number of nights: ${searchQuery.number_of_nights}`
+            p= `night of rent: ${searchQuery.night_of_rent}`
+            - const cost = searchQuery.number_of_nights * movie.cost_per_night
+            hr
+            p= `Total: $ ${cost}`
+            //- const totalCost = costEach * searchQuery.numberOfGuests
+            //- hr
+            //- h3= `Total cost: $ ${totalCost}`
+            - const query = `id=${movie._id}&number_of_nights=${searchQuery.number_of_nights}&night_of_rent=${searchQuery.night_of_rent}`;
+            //- - const query = `id=${movie._id}&number_of_nights=${searchQuery.dateOfDeparture}&numberOfGuests=${searchQuery.numberOfGuests}`;
+            if url === '/results' 
+                a.button(href=`/confirmation/${query}`) Continue
+            else if url.startsWith('/confirmation/')
+                if user
                     a.button(href=`/order-placed/${query}`) Place your order
                 else
-                a.button(href=`/login`) Please log in to order!
-                
+                    a.button(href=`/login`) Please log in to order!
+            
