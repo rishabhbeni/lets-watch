@@ -2,6 +2,13 @@
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
+    azureSubscription: 'Free Trial(7c6f2096-8066-4bd8-a6ec-40ba11c3ea80)'
+    appType: 'webApp'
+    WebAppName: 
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
     azureSubscription: 'Free Trial (7c6f2096-8066-4bd8-a6ec-40ba11c3ea80)'
     appType: 'webApp'
     WebAppName: 'coffee-critique-beni'
